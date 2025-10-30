@@ -22,13 +22,10 @@ Clona el repositorio e instala las dependencias:
 ```bash
 git clone https://github.com/SantiLC03/market-making-polymarket.git
 cd market-making-polymarket
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 ## Uso
+```bash
 python main.py
-
-
-Asegúrate de configurar tu wallet de prueba y las claves de API necesarias antes de iniciar la operativa.
-
-
-
+```
