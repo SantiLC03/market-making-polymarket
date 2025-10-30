@@ -15,7 +15,14 @@ El sistema implementado permite:
 
 El enfoque de este proyecto es **demostrar el potencial tecnológico y estratégico del equipo**, más que profundizar en cálculos matemáticos complejos.
 
-## Instalación
+## Índice
+  * Tecnologías (#tecnologías)
+  * Instalación (#instalación)
+  * Uso (#uso)
+  * Contribución (#contribución)
+
+
+## 1. Instalación
 
 Clona el repositorio e instala las dependencias:
 
@@ -25,7 +32,12 @@ cd market-making-polymarket
 pip install -r requirements.txt
 ```
 
+## 2. Uso
+Esta sección instruye al usuario sobre cómo iniciar el proyecto, utilizando también un comando de Bash simple, y luego retoma el texto normal para dar advertencias.
+
+```markdown
 ## Uso
+
 ```bash
 python main.py
 ```
