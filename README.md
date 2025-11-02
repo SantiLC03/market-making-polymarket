@@ -80,7 +80,7 @@ market-making-polymarket/
 
 ## EXPLICACIÓN DE LOS MÓDULOS 🧩
 
-## 1️⃣ **API POLYMARKET** (`api_polymarket.py`)
+## 1️⃣ API POLYMARKET (`api_polymarket.py`)
 Este módulo gestiona la conexión e interacción con la plataforma Polymarket.
 
 * **Conexión REST API:** Obtiene información inicial de eventos y sub-markets.
