@@ -80,30 +80,78 @@ market-making-polymarket/
 
 ## EXPLICACIÓN DE LOS MÓDULOS 🧩
 
-## 1️⃣ API POLYMARKET (`api_polymarket.py`)
-Este módulo gestiona la conexión e interacción con la plataforma Polymarket.
+## 1️⃣ **API POLYMARKET** (`api_polymarket.py`): La Ventana al Mercado 🌐
+Este módulo es la capa de comunicación directa con Polymarket, y su principal objetivo es doble: **obtener la configuración del mercado y recibir el flujo de datos en tiempo real (CLOB).**
 
-* **Conexión REST API:** Obtiene información inicial de eventos y sub-markets.
+---
+
+### A. Preparación y Configuración (REST API)
+Antes de operar, necesitamos saber **dónde** y **qué** vamos a negociar. Esto se logra a través de la API REST, que proporciona datos estáticos o de baja frecuencia.
+
+#### 1. Normalización del SLUG
 
 ```Python
 SLUG_MERCADO = re.sub(r"\s+", "-", re.sub(r"[^\w\s]", "", MERCADO.lower())).strip("-")
-tokens = elegir_submarket(SLUG_MERCADO)
-Conexión WebSocket: Recibe datos del libro de órdenes (bids, asks) en tiempo real.
 ```
+* **¿Por qué?** Las APIs REST identifican los mercados mediante un ***"slug"*** (una URL amigable), que es una versión limpiada y en minúsculas del nombre del mercado (`MERCADO`).
+
+* **Fundamento:**
+Utilizamos expresiones regulares (`re`) para **normalizar el nombre del mercado** a un `slug` válido para la URL de la API. La función `elegir_submarket` es esencial porque:
+
+#### 2. Elección del Sub-Market/Candidato
 
 ```Python
+Copy code
+tokens = elegir_submarket(SLUG_MERCADO)
+```
+
+* **¿Por qué?** Un evento como "Ganador de la Champions League" contiene múltiples mercados (`sub-markets`), uno por cada equipo (ej: Real Madrid, Man City). Nuestro bot debe operar en uno solo.
+
+* **Fundamento:**
+Esta función consulta la API para el evento, muestra todos los sub-markets disponibles y permite al usuario seleccionar manualmente el equipo. Devuelve los `token_ids` (identificadores únicos del activo) asociados al candidato elegido. Estos son clave para suscribirse al WebSocket.
+
+### B. Datos en Tiempo Real (WebSocket)
+Una vez que tenemos los `token_ids`, necesitamos el flujo de precios y liquidez. El protocolo REST es demasiado lento para esto, por lo que usamos **WebSockets** para transmisión bidireccional en tiempo real.
+
+#### 3. Suscripción al Libro de Órdenes
+
+```Python
+Copy code
 async with websockets.connect(WS_URL) as websocket:
+    # Suscribirse a los tokens elegidos
     await websocket.send(json.dumps({
-        "assets_ids": tokens,
+        "assets_ids": tokens,  # Usamos los tokens obtenidos en el paso anterior
         "type": "market"
     }))
 ```
-* **Cálculos base:** Best Bid, Best Ask, MidPrice y Spread.
+
+* **¿Por qué?** Un bot de Market Making requiere datos de latencia mínima para reaccionar a cambios de precio.
+
+* **Fundamento:**
+El código establece la conexión WebSocket y envía un mensaje de suscripción con la lista de `asset_ids`. Esto indica al servidor de Polymarket que nos envíe solo actualizaciones del mercado específico, minimizando tráfico y retrasos.
+
+#### 4. Cálculo de Métricas Base
 
 ```Python
-mid_price = (best_bid + best_ask) / 2
-spread = abs(best_ask - best_bid)
+Copy code
+best_bid = max([float(b["price"]) for b in bids]) if bids else 0
+best_ask = min([float(a["price"]) for a in asks]) if asks else 0
+
+mid_price = round((best_bid + best_ask) / 2, 4) if bids and asks else 0
+spread = round(abs(best_ask - best_bid), 4) if bids and asks else 0
 ```
+
+* **¿Por qué?** Necesitamos métricas de trading inmediatamente procesables para el resto del sistema.
+
+* **Fundamento:**
+
+* **Best Bid:** Precio más alto que un comprador está dispuesto a pagar.
+
+* **Best Ask:** Precio más bajo al que un vendedor está dispuesto a vender.
+
+* **MidPrice:** Precio medio entre Best Bid y Best Ask; representa el precio de mercado instantáneo y es la entrada principal para el Filtro de Kalman.
+
+* **Spread:** Diferencia entre Best Ask y Best Bid; mide liquidez y costo de transacción. Es la base para el cálculo de Spread Óptimo en el módulo correspondiente.
 
 ## 2️⃣ **FILTRO DE KALMAN** (`kalman_filter.py`)
 **Objetivo:** Estimar el **FairPrice** (precio justo) y detectar tendencias de mercado, suavizando la volatilidad del `mid_price` observado.
