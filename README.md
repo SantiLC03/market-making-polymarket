@@ -68,19 +68,18 @@ La arquitectura es modular y orientada a objetos para una clara separación de r
 ```plaintext
 market-making-polymarket/
 │
-├─ `api_polymarket.py`    # Conexión a REST API y WebSocket de Polymarket
-├─ `kalman_filter.py`     # Filtro de Kalman para estimación de FairPrice y MidPrice
-├─ `spread.py`            # Cálculo avanzado de Spread Óptimo
-├─ `wallet.py`            # Conexión a MetaMask y envío de órdenes
-├─ `main.py`              # Script principal que orquesta todos los módulos
-├─ `requirements.txt`
-└─ `README.md`
+├─ api_polymarket.py    # Conexión a REST API y WebSocket de Polymarket
+├─ kalman_filter.py     # Filtro de Kalman para estimación de FairPrice y MidPrice
+├─ spread.py            # Cálculo avanzado de Spread Óptimo
+├─ wallet.py            # Conexión a MetaMask y envío de órdenes
+├─ main.py              # Script principal que orquesta todos los módulos
+├─ requirements.txt
+└─ README.md
 ```
 
 ## EXPLICACIÓN DE LOS MÓDULOS 🧩
 
 ## 1️⃣ **API POLYMARKET** (`api_polymarket.py`)
-
 Este módulo gestiona la conexión e interacción con la plataforma Polymarket.
 
 * **Conexión REST API:** Obtiene información inicial de eventos y sub-markets.
@@ -105,7 +104,7 @@ mid_price = (best_bid + best_ask) / 2
 spread = abs(best_ask - best_bid)
 ```
 
-## 2️⃣ FILTRO DE KALMAN (`kalman_filter.py`)
+## 2️⃣ **FILTRO DE KALMAN** (`kalman_filter.py`)
 **Objetivo:** Estimar el **FairPrice** (precio justo) y detectar tendencias de mercado, suavizando la volatilidad del `mid_price` observado.
 
 * **Variables de entrada (Observación):**
@@ -130,52 +129,53 @@ plt.plot(df['estimated_price'], label='Precio Estimado (Kalman)')
 plt.legend()
 ```
 
-3️⃣ SPREAD ÓPTIMO AVANZADO (spread.py)
+## 3️⃣ **SPREAD ÓPTIMO AVANZADO** (`spread.py`)
 El módulo implementa un cálculo dinámico del spread que no se limita a un valor fijo.
 
 Se consideran factores clave para maximizar la eficiencia y minimizar el riesgo:
 
-Volatilidad del mercado: spread más amplio en mercados volátiles.
+* **Volatilidad del mercado:** spread más amplio en mercados volátiles.
 
-Inventario actual: Ajusta el spread para reequilibrar la posición (vender más rápido en exceso o protegerse).
+* **Inventario actual:** Ajusta el spread para reequilibrar la posición (vender más rápido en exceso o protegerse).
 
-Aversión al riesgo: Mayor riesgo percibido implica un spread más amplio.
+* **Aversión al riesgo:** Mayor riesgo percibido implica un spread más amplio.
 
-Profundidad del libro de órdenes: Influencia de la liquidez disponible.
+* **Profundidad del libro de órdenes:** Influencia de la liquidez disponible.
 
-Cálculo conceptual:
+* **Cálculo conceptual:**
 
-Python
-
+```Python
 spread_optimo = f(volatilidad, inventario, aversion_riesgo, profundidad)
 bid_price = fair_price - spread_optimo / 2
 ask_price = fair_price + spread_optimo / 2
-4️⃣ WALLET Y ENVÍO DE ÓRDENES (wallet.py)
+```
+
+## 4️⃣ **WALLET Y ENVÍO DE ÓRDENES** (`wallet.py`)
 Gestiona la interacción con la wallet (simulada o real vía API para MetaMask) para la firma y envío de transacciones.
 
-Conexión y envío conceptual:
+* **Conexión y envío conceptual:**
 
-Python
-
+```Python
 wallet.conectar_metamask()
 wallet.enviar_orden(asset_id, price, size, side)
-Funcionalidades:
+```
 
-Conexión segura con la wallet del usuario.
+* **Funcionalidades:**
 
-Firma de transacciones (órdenes de compra/venta).
+   * Conexión segura con la wallet del usuario.
 
-Registro de órdenes enviadas y estado de ejecución.
+   * Firma de transacciones (órdenes de compra/venta).
 
-Control de inventario.
+   * Registro de órdenes enviadas y estado de ejecución.
 
-5️⃣ SCRIPT PRINCIPAL (main.py)
-El script principal orquesta todos los módulos, encapsulando la lógica en un objeto MarketMakerBot basado en POO.
+   * Control de inventario.
 
-Orquestación y flujo:
+## 5️⃣ **SCRIPT PRINCIPAL** (`main.py`)
+El script principal orquesta todos los módulos, encapsulando la lógica en un objeto `MarketMakerBot` basado en POO.
 
-Python
+* **Orquestación y flujo:**
 
+```Python
 # Inicialización de módulos
 market_data = MarketData(SLUG_MERCADO)
 kalman = KalmanEstimator(df)
@@ -185,27 +185,29 @@ wallet = WalletConnector()
 # Bot de Market Making
 bot = MarketMakerBot(market_data, kalman, spread_calc, wallet)
 await bot.run()
-Funciones principales del MarketMakerBot:
+```
 
-Obtención de datos en tiempo real.
+* **Funciones principales del MarketMakerBot:**
 
-Estimación de FairPrice y tendencias.
+   * Obtención de datos en tiempo real.
 
-Cálculo de spread óptimo, ajustando bid y ask.
+   * Estimación de FairPrice y tendencias.
 
-Envío de órdenes al mercado.
+   * Cálculo de spread óptimo, ajustando bid y ask.
 
-Control de inventario y riesgos.
+   * Envío de órdenes al mercado.
+
+   * Control de inventario y riesgos.
 
 Todo el flujo está encapsulado en objetos, facilitando escalabilidad y mantenimiento.
 
-CONTRIBUCIÓN 🚀
+## CONTRIBUCIÓN 🚀
 Este proyecto es modular, lo que facilita las siguientes contribuciones:
 
-Añadir nuevas estrategias de estimación de precio o indicadores de mercado.
+* Añadir nuevas estrategias de estimación de precio o indicadores de mercado.
 
-Integrar modelos de riesgo o aversión al riesgo más avanzados.
+* Integrar modelos de riesgo o aversión al riesgo más avanzados.
 
-Probar otros mercados de Polymarket sin modificar la arquitectura principal.
+* Probar otros mercados de Polymarket sin modificar la arquitectura principal.
 
-Ampliar la conexión de wallets o exchanges adicionales.
+* Ampliar la conexión de wallets o exchanges adicionales.
