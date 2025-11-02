@@ -101,7 +101,6 @@ Utilizamos expresiones regulares (`re`) para **normalizar el nombre del mercado*
 #### 2. Elección del Sub-Market/Candidato
 
 ```Python
-Copy code
 tokens = elegir_submarket(SLUG_MERCADO)
 ```
 
@@ -116,7 +115,6 @@ Una vez que tenemos los `token_ids`, necesitamos el flujo de precios y liquidez.
 #### 3. Suscripción al Libro de Órdenes
 
 ```Python
-Copy code
 async with websockets.connect(WS_URL) as websocket:
     # Suscribirse a los tokens elegidos
     await websocket.send(json.dumps({
@@ -133,7 +131,6 @@ El código establece la conexión WebSocket y envía un mensaje de suscripción 
 #### 4. Cálculo de Métricas Base
 
 ```Python
-Copy code
 best_bid = max([float(b["price"]) for b in bids]) if bids else 0
 best_ask = min([float(a["price"]) for a in asks]) if asks else 0
 
