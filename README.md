@@ -19,12 +19,12 @@ El enfoque principal es **demostrar el potencial tecnológico y estratégico del
 ---
 
 ## ÍNDICE
-* [Tecnologías](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#tecnologias)
-* [Instalación](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#instalacion)
-* [Uso](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#uso)
-* [Estructura del proyecto](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#estructura-del-proyecto)
-* [Explicación de los módulos](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#explicacion-de-los-modulos)
-* [Contribución](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#contribucion)
+* [Tecnologías](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#tecnolog%C3%ADas-)
+* [Instalación](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#instalaci%C3%B3n-%EF%B8%8F)
+* [Uso](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#uso-%EF%B8%8F)
+* [Estructura del proyecto](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#estructura-del-proyecto-)
+* [Explicación de los módulos](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#explicaci%C3%B3n-de-los-m%C3%B3dulos-)
+* [Contribución](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#contribuci%C3%B3n-)
 
 ---
 
