@@ -19,13 +19,12 @@ El enfoque principal es **demostrar el potencial tecnológico y estratégico del
 ---
 
 ## ÍNDICE
-* [Tecnologías](#tecnologías)
-* [Instalación](#instalación)
+* [Tecnologías](#tecnologias)
+* [Instalación](#instalacion)
 * [Uso](#uso)
 * [Estructura del proyecto](#estructura-del-proyecto)
 * [Explicación de los módulos](#explicación-de-los-módulos)
 * [Contribución](#contribución)
-
 ---
 
 ## TECNOLOGÍAS 💻
@@ -65,7 +64,8 @@ python main.py
 
 ## ESTRUCTURA DEL PROYECTO 📁
 La arquitectura es modular y orientada a objetos para una clara separación de responsabilidades:
-```Plaintext
+
+```plaintext
 market-making-polymarket/
 │
 ├─ `api_polymarket.py`    # Conexión a REST API y WebSocket de Polymarket
@@ -76,9 +76,11 @@ market-making-polymarket/
 ├─ `requirements.txt`
 └─ `README.md`
 ```
+
 ## EXPLICACIÓN DE LOS MÓDULOS 🧩
 
-## 1️⃣ API POLYMARKET (`Api_polymarket.py`)
+## 1️⃣ **API POLYMARKET** (`api_polymarket.py`)
+
 Este módulo gestiona la conexión e interacción con la plataforma Polymarket.
 
 * **Conexión REST API:** Obtiene información inicial de eventos y sub-markets.
