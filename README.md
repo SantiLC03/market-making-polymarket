@@ -19,12 +19,13 @@ El enfoque principal es **demostrar el potencial tecnológico y estratégico del
 ---
 
 ## ÍNDICE
-* [Tecnologías](#tecnologias)
-* [Instalación](#instalacion)
-* [Uso](#uso)
-* [Estructura del proyecto](#estructura-del-proyecto)
-* [Explicación de los módulos](#explicación-de-los-módulos)
-* [Contribución](#contribución)
+* [Tecnologías](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#tecnologias)
+* [Instalación](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#instalacion)
+* [Uso](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#uso)
+* [Estructura del proyecto](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#estructura-del-proyecto)
+* [Explicación de los módulos](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#explicacion-de-los-modulos)
+* [Contribución](https://github.com/SantiLC03/market-making-polymarket/blob/Actualizar-README/README.md#contribucion)
+
 ---
 
 ## TECNOLOGÍAS 💻
