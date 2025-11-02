@@ -142,13 +142,13 @@ spread = round(abs(best_ask - best_bid), 4) if bids and asks else 0
 
 * **Fundamento:**
 
-* **Best Bid:** Precio más alto que un comprador está dispuesto a pagar.
+   * **Best Bid:** Precio más alto que un comprador está dispuesto a pagar.
 
-* **Best Ask:** Precio más bajo al que un vendedor está dispuesto a vender.
+   * **Best Ask:** Precio más bajo al que un vendedor está dispuesto a vender.
 
-* **MidPrice:** Precio medio entre Best Bid y Best Ask; representa el precio de mercado instantáneo y es la entrada principal para el Filtro de Kalman.
+   * **MidPrice:** Precio medio entre Best Bid y Best Ask; representa el precio de mercado instantáneo y es la entrada principal para el Filtro de Kalman.
 
-* **Spread:** Diferencia entre Best Ask y Best Bid; mide liquidez y costo de transacción. Es la base para el cálculo de Spread Óptimo en el módulo correspondiente.
+   * **Spread:** Diferencia entre Best Ask y Best Bid; mide liquidez y costo de transacción. Es la base para el cálculo de Spread Óptimo en el módulo correspondiente.
 
 ## 2️⃣ **FILTRO DE KALMAN** (`kalman_filter.py`)
 **Objetivo:** Estimar el **FairPrice** (precio justo) y detectar tendencias de mercado, suavizando la volatilidad del `mid_price` observado.
