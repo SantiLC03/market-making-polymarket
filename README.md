@@ -96,7 +96,7 @@ SLUG_MERCADO = re.sub(r"\s+", "-", re.sub(r"[^\w\s]", "", MERCADO.lower())).stri
 * **¿Por qué?** Las APIs REST identifican los mercados mediante un ***"slug"*** (una URL amigable), que es una versión limpiada y en minúsculas del nombre del mercado (`MERCADO`).
 
 * **Fundamento:**
-Utilizamos expresiones regulares (`re`) para **normalizar el nombre del mercado**, eliminando caracteres especiales (como ?, !, ,), convertiendo a minúsculas, y reemplazando espacios por guiones (-). Esto garantiza que, independientemente de cómo el usuario escriba el nombre, siempre generemos el `slug` correcto que espera la API de Polymarket.
+Utilizamos expresiones regulares (`re`) para **normalizar el nombre del mercado**, eliminando caracteres especiales (como `?`, `!`,`,`), convertiendo a minúsculas, y reemplazando espacios por guiones (`-`). Esto garantiza que, independientemente de cómo el usuario escriba el nombre, siempre generemos el `slug` correcto que espera la API de Polymarket.
 
 #### 2. Elección del Sub-Market/Candidato
 
