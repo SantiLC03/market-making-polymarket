@@ -9,9 +9,9 @@ from BasicKalman import KalmanFairPriceEstimator
 
 async def main():
     print("🔍 Buscando mercado del Real Madrid...")
-    url = "https://gamma-api.polymarket.com/events?slug=uefa-champions-league-winner"
-    #url = "https://gamma-api.polymarket.com/events?slug=when-will-the-government-shutdown-end"
-    
+    #url = "https://gamma-api.polymarket.com/events?slug=uefa-champions-league-winner"
+    url = "https://gamma-api.polymarket.com/events?slug=fed-decision-in-december"
+    indMercado = 1  # Índice del mercado a utilizar
     r = requests.get(url)
     
     if r.status_code != 200:
@@ -31,7 +31,7 @@ async def main():
         print("❌ No hay mercados disponibles")
         return
         
-    market = markets[0]
+    market = markets[indMercado]
     print(f"📊 Mercado: {market.get('question')}")
     
     token_ids = json.loads(market.get("clobTokenIds", "[]"))
