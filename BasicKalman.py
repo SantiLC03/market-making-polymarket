@@ -2,7 +2,7 @@ import numpy as np
 import time
 
 class KalmanFairPriceEstimator:
-    def __init__(self, initial_mid_price, Q=0.1, R=0.06):
+    def __init__(self, initial_mid_price, Q=0.00001, R=0.5):
         self.F = 1  # Matriz de transición de estado
         self.H = 1  # Matriz de observación
         self.Q = Q  # Varianza del ruido del proceso
@@ -22,7 +22,7 @@ class KalmanFairPriceEstimator:
         # Ajustar R dinámicamente según el volumen del trade
         # Aquí puedes usar una función inversa, por ejemplo: R = R_base / (1 + size)
         # O normalizar el tamaño para evitar valores extremos
-        adjusted_R = self.R / (1 + np.log(1 + size))
+        adjusted_R = self.R / (1 + size)
 
         # Paso de actualización
         K = P_pred * self.H / (self.H * P_pred * self.H + adjusted_R)

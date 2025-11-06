@@ -6,6 +6,7 @@ import re
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from BasicKalman import KalmanFairPriceEstimator
+from KalmanIA import KalmanIAFairPriceEstimator
 
 async def main():
     print("🔍 Buscando mercado...")
@@ -93,7 +94,7 @@ async def main():
         print(f"Mid: {initial_mid:.4f}")
         
         print(f"\n🔧 Inicializando Filtro de Kalman con precio medio inicial: {initial_mid:.4f}")
-        estimator = KalmanFairPriceEstimator(initial_mid)
+        estimator = KalmanIAFairPriceEstimator(initial_mid)
 
         # Configuración de la visualización
         plt.style.use('dark_background')
@@ -174,7 +175,8 @@ async def main():
                     best_ask = float(ev['best_ask'])
                     mid_price = (best_bid + best_ask) / 2
                     spread = best_ask - best_bid
-                    fair_price = estimator.update(best_bid,best_ask, price, size)  
+                    fair_price = estimator.update(best_bid, best_ask, price, size) 
+                    print(f"\nTrade detected - Price: {price}, Size: {size}, Best Bid: {best_bid}, Best Ask: {best_ask}") 
                 
                 '''
                 elif events[0].get("event_type") == "book":
