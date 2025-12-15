@@ -1,6 +1,6 @@
 # PROYECTO FINAL: SISTEMA DE TRADING ALGORÍTMICO EN POLYMARKET 🤖
 
-## DESCRIPCIÓN
+## DESCRIPCIÓN 
 
 Este proyecto corresponde a la práctica final de máster, diseñada para presentar un sistema de **trading algorítmico** en mercados de predicción. Nuestro objetivo es demostrar la capacidad de combinar **blockchain**, **algoritmos de trading** y una **visión estratégica** en mercados financieros emergentes, en particular en la plataforma de predicción **Polymarket**.
 
