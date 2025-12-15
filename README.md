@@ -26,6 +26,7 @@ pip install -r requirements.txt```
 python main.py
 
 
+
 Asegúrate de configurar tu wallet de prueba y las claves de API necesarias antes de iniciar la operativa.
 
 
