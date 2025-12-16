@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto corresponde a la práctica final del máster, diseñada para presentar un sistema de trading algorítmico. Nuestro objetivo es demostrar la capacidad de combinar **blockchain**, **algoritmos de trading** y una **visión estratégica en mercados financieros emergentes**, en particular en plataformas de predicción como **Polymarket**.
+Este proyecto corresponde a la práctica final del Máster, diseñada para presentar un sistema de trading algorítmico. Nuestro objetivo es demostrar la capacidad de combinar **blockchain**, **algoritmos de trading** y una **visión estratégica en mercados financieros emergentes**, en particular en plataformas de predicción como **Polymarket**.
 
 Para el desarrollo de la práctica, nos hemos centrado exclusivamente en los **mercados de Polymarket con vencimiento a 15 minutos, en los que los participantes operan sobre si el precio de Bitcoin subirá o bajará antes del cierre del mercado**. Este tipo de mercado se ha seleccionado por su horizonte temporal corto, que favorece una dinámica de precios activa y una liquidez suficiente para evaluar el comportamiento del sistema mediante múltiples operaciones en intervalos reducidos de tiempo.
 
